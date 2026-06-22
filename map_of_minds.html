@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom World Map</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        body { margin: 0; padding: 0; font-family: sans-serif; }
+        #map { height: 100vh; width: 100%; }
+
+        .student-popup img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .student-popup h3 { margin: 0 0 5px 0; color: #333; }
+        .student-popup p { margin: 0; font-size: 14px; line-height: 1.4; color: #666; }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // view : coordinates [20, 0] and zoom level 2
+        const map = L.map('map', {
+            minZoom: 1,
+            maxZoom: 18,
+            maxBounds: [[-90, -180], [90, 180]],
+            maxBoundsViscosity: 1.0 // Makes the edges "hard" so you can't bounce past them
+        }).setView([20, 0], 2); 
+
+        // Map tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap contributors © CARTO',
+            subdomains: 'abcd',
+            noWrap: true, // Prevents the map from repeating side-by-side
+            bounds: [[-90, -180], [90, 180]]
+        }).addTo(map);
+
+        // students data 
+       const students = [
+            { name: "Student 1", country: "United States", coords: [37.0902, -95.7129] },
+            { name: "Student 2", country: "Greece", coords: [39.0742, 21.8243] },
+            { name: "Student 3", country: "Uzbekistan", coords: [41.3775, 64.5853] },
+            { name: "Student 4", country: "Kazakhstan", coords: [48.0196, 66.9237] },
+            { name: "Student 5", country: "China", coords: [35.8617, 104.1954] },
+            { name: "Student 6", country: "Poland", coords: [51.9194, 19.1451] },
+            { name: "Student 7", country: "Lithuania", coords: [55.1694, 23.8813] },
+            { name: "Student 8", country: "United Kingdom", coords: [55.3781, -3.4360] },
+            { name: "Student 9", country: "Turkey", coords: [38.9637, 35.2433] },
+            { name: "Student 10", country: "Albania", coords: [41.1533, 20.1683] },
+            { name: "Student 11", country: "Netherlands", coords: [52.1326, 5.2913] },
+            { name: "Student 12", country: "Canada", coords: [56.1304, -106.3468] },
+            { name: "Student 13", country: "Armenia", coords: [40.0691, 45.0382] },
+            { name: "Student 14", country: "Italy", coords: [41.8719, 12.5674] },
+            { name: "Student 15", country: "Brazil", coords: [-14.2350, -51.9253] },
+            { name: "Student 16", country: "Russia", coords: [61.5240, 105.3188] },
+            { name: "Student 17", country: "Estonia", coords: [58.5953, 25.0136] },
+            { name: "Student 18", country: "Ukraine", coords: [48.3794, 31.1656] },
+            { name: "Student 19", country: "Sierra Leone", coords: [8.4606, -11.7799] },
+            { name: "Student 20", country: "Saudi Arabia", coords: [23.8859, 45.0792] },
+            { name: "Student 21", country: "South Korea", coords: [35.9078, 127.7669] },
+            { name: "Student 22", country: "Taiwan", coords: [23.6978, 120.9605] },
+            { name: "Student 23", country: "Hong Kong SAR China", coords: [22.3193, 114.1694] },
+            { name: "Student 24", country: "Qatar", coords: [25.3548, 51.1839] },
+            { name: "Student 25", country: "Malta", coords: [35.9375, 14.3754] },
+            { name: "Student 26", country: "Thailand", coords: [15.8700, 100.9925] },
+            { name: "Student 27", country: "Spain", coords: [40.4637, -3.7492] }
+        ];
+
+        // create pins
+        students.forEach(student => {
+            const marker = L.marker(student.coords).addTo(map);
+            
+            // HTML content for the popup
+            const popupContent = `
+                <div class="student-popup">
+                    <img src="${student.photo}" alt="${student.name}">
+                    <h3>${student.name}</h3>
+                    <p>${student.bio}</p>
+                </div>
+            `;
+            
+            marker.bindPopup(popupContent);
+        });
+    </script>
+</body>
+</html>
