@@ -29,13 +29,12 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-        // view : coordinates [20, 0] and zoom level 2
-        const map = L.map('map', {
-            minZoom: 1,
-            maxZoom: 18,
-            maxBounds: [[-90, -180], [90, 180]],
-            maxBoundsViscosity: 1.0 
-        }).setView([20, 0], 2); 
+    const map = L.map('map', {
+        minZoom: 3, 
+        maxZoom: 18,
+        maxBounds: [[-90, -180], [90, 180]],
+        maxBoundsViscosity: 1.0 
+    }).setView([38, 60], 3);
 
         // Map tiles
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -46,17 +45,13 @@
         }).addTo(map);
 
         const students = [
-            // Note: Emma is updated to "emma.png" to match your file setup exactly!
-            // Update the others to their exact matching file extension when you upload them.
             { name: "GERMO", country: "CHINA", coords: [35.8617, 104.1954], image: "germo.jpg" },
-            { name: "RACHAEL", country: "CHINA", coords: [35.8817, 104.2154], image: "rachael.jpg" },
+            { name: "RACHAEL", country: "CHINA", coords: [35.8817, 104.2154], image: "rachel.jpg" },
             { name: "REGAN", country: "CHINA", coords: [35.9017, 104.2354], image: "regan.jpg" },
             { name: "BRANDON", country: "HONGKONG", coords: [35.9217, 104.2554], image: "brandon.jpg" },
             { name: "EMMA", country: "CHINA", coords: [35.9417, 104.2754], image: "emma.png" }, 
             { name: "TIFFANY", country: "CHINA", coords: [35.9617, 104.2954], image: "tiffany.jpg" },
             { name: "DAVID", country: "CHINA", coords: [35.9817, 104.3154], image: "david.jpg" },
-
-            // --- TURKEY GROUP ---
             { name: "EMRE", country: "TURKEY", coords: [38.9637, 35.2433], image: "emre.jpg" },
             { name: "ISKENDER", country: "TURKEY", coords: [38.9837, 35.2633], image: "iskender.jpg" },
             { name: "EFNAN", country: "TURKEY", coords: [39.0037, 35.2833], image: "efnan.jpg" },
@@ -67,29 +62,17 @@
             { name: "KORAY", country: "TURKEY", coords: [39.1037, 35.3833], image: "koray.jpg" },
             { name: "CEM", country: "TURKEY", coords: [39.1237, 35.4033], image: "cem.jpg" },
             { name: "YUSRA", country: "TURKEY", coords: [39.1437, 35.4233], image: "yusra.jpg" },
-
-            // --- TAIWAN GROUP ---
             { name: "KIRA", country: "TAIWAN", coords: [23.6978, 120.9605], image: "kira.jpg" },
             { name: "YULI", country: "TAIWAN", coords: [23.7178, 120.9805], image: "yuli.jpg" },
             { name: "RICHARD", country: "TAIWAN", coords: [23.7378, 121.0005], image: "richard.jpg" },
-
-            // --- GREECE GROUP ---
             { name: "KONSTANTINOS", country: "GREECE", coords: [39.0742, 21.8243], image: "konstantinos.jpg" },
             { name: "PARIS", country: "GREECE", coords: [39.0942, 21.8443], image: "paris.jpg" },
-
-            // --- FRANCE GROUP ---
             { name: "NOELYS", country: "FRANCE", coords: [46.2276, 2.2137], image: "noelys.jpg" },
             { name: "ABDENNOUR", country: "FRANCE", coords: [46.2476, 2.2337], image: "abdennour.jpg" },
-
-            // --- RUSSIA GROUP ---
             { name: "MIIA", country: "RUSSIA", coords: [61.5240, 105.3188], image: "miia.jpg" },
             { name: "ANDREI", country: "RUSSIA", coords: [61.5440, 105.3388], image: "andrei.jpg" },
-
-            // --- SPAIN GROUP ---
             { name: "SOPHIE", country: "SPAIN", coords: [40.4637, -3.7492], image: "sophie.jpg" },
             { name: "SILVIA", country: "SPAIN", coords: [40.4837, -3.7292], image: "silvia.jpg" },
-
-            // --- SINGLE STUDENT COUNTRIES ---
             { name: "DAVUD", country: "AZERBAIJAN", coords: [40.1431, 47.5769], image: "davud.jpg" },
             { name: "SELBI", country: "KYRGYZSTAN", coords: [41.2044, 74.7661], image: "selbi.jpg" },
             { name: "AVICENNA", country: "IRAN", coords: [32.4279, 53.6880], image: "avicenna.jpg" },
